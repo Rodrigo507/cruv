@@ -15,7 +15,7 @@ class PostType extends AbstractType
             ->add('title')
             ->add('detail')
             ->add('publisheddate')
-            ->add('owner')
+//            ->add('owner')
         ;
     }
 

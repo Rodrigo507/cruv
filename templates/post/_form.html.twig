@@ -1,4 +1,60 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div id="test" class="form-control">
+    <div class="col-md-12">
+        <i class="bi bi-chat-left-quote-fill"></i>
+        {{ form_label(form.title) }}
+    </div>
+    <div class="mb-3">
+        <div class="col-md-12">
+            {{ form_widget(form.title,  {'attr': {'class': 'form-control','placeholder': 'Example: Vice President of Marketing'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.title) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <i class="bi bi-chat-dots-fill"></i>
+        {{ form_label(form.detail) }}
+    </div>
+    <div class="mb-3">
+        <div class="col-md-12">
+            {{ form_widget(form.detail,  {'attr': {'class': 'form-control','placeholder': 'Example: It is a long established fact that a reader will be distracted by the readable content of a page'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.detail) }}
+            </div>
+        </div>
+    </div>
+
+
+{#    <div class="col-md-12">#}
+{#        <i class="bi bi-person-fill"></i>#}
+{#        {{ form_label(form.owner) }}#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#        <div class="col-md-2">#}
+{#            {{ form_widget(form.owner,  {'attr': {'class': 'form-control','placeholder': 'Your Name'}}) }}#}
+{#            <div class="form-error">#}
+{#                {{ form_errors(form.owner) }}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="col-md-12">
+        <i class="bi bi-calendar-date-fill"></i>
+        {{ form_label(form.publisheddate,'Published Date') }}
+    </div>
+    <div class="mb-3">
+        <div class="col-md-2">
+            {{ form_widget(form.publisheddate) }}
+            <div class="form-error">
+                {{ form_errors(form.publisheddate) }}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<button class="btn btn-success mt-2">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

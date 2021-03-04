@@ -1,17 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post index{% endblock %}
+{% block title %}{{ parent() }} - Post index{% endblock %}
 
 {% block body %}
     <h1>Post index</h1>
 
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Detail</th>
-                <th>Publisheddate</th>
+                <th colspan="2">Publish Date</th>
                 <th>Owner</th>
                 <th>actions</th>
             </tr>
@@ -19,10 +18,9 @@
         <tbody>
         {% for post in posts %}
             <tr>
-                <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
-                <td>{{ post.detail }}</td>
-                <td>{{ post.publisheddate ? post.publisheddate|date('Y-m-d') : '' }}</td>
+                <td>{{ post.detail|slice(0,100)}}...</td>
+                <td colspan="2">{{ post.publisheddate ? post.publisheddate|date('Y-m-d') : '' }}</td>
                 <td>{{ post.owner }}</td>
                 <td>
                     <a href="{{ path('post_show', {'id': post.id}) }}">show</a>
@@ -37,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('post_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('post_new') }}">Create new</a>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,9 +38,13 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
+
             //Seteamos el usuario creador del post
             $post->setUserId($user);
-            
+
+            $nombre = $user->getNombre();
+            $post->setOwner($nombre);
+
             $entityManager->persist($post);
             $entityManager->flush();
 
