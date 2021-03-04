@@ -21,8 +21,9 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="fab fa-dev"></i>  UP 2021</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><i class="fab fa-dev"></i> UP 2021</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -30,33 +31,40 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Inicio</a>
                 </li>
+                {% if  is_granted('ROLE_ADMIN')%}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('post_new') }}">Crear Posts</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('post_index') }}">Admin post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_index') }}">Admin user</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('post_index') }}">Admin post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_index') }}">Admin user</a>
+                    </li>
+                {% endif %}
+
 
             </ul>
             <div class="d-flex dropstart">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i>    PERFIL
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> PERFIL
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-{#                            TODO: validacion de usuarios logeados#}
-                            <li><a class="dropdown-item" href="#">Login</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            {# TODO: validacion de usuarios logeados #}
+                            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li><a class="dropdown-item" href="{{ path('app_login') }}">Login</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                            {% endif %}
                         </ul>
                     </li>
 
                 </ul>
-{#                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
-{#                <button class="btn btn-outline-success" type="submit">Search</button>#}
+                {# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> #}
+                {# <button class="btn btn-outline-success" type="submit">Search</button> #}
             </div>
         </div>
     </div>
@@ -65,16 +73,19 @@
 
 <div id="maindiv" class="container">
     {% block body %}{% endblock %}
-<div id="footer" class="p-5">
-    <div class="container w-50 pt-5">
+    <div id="footer" class="p-5">
+        <div class="container w-50 pt-5">
 
-        <div class="row justify-content-md-center py-5">
-            <div class="col text-center font-weight-light">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining</p>
+            <div class="row justify-content-md-center py-5">
+                <div class="col text-center font-weight-light">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining</p>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
