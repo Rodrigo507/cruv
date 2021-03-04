@@ -1,4 +1,60 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div id="test" class="form-control">
+    <div class="col-md-12">
+        <i class="bi bi-chat-left-quote-fill"></i>
+        {{ form_label(form.email) }}
+    </div>
+    <div class="mb-3">
+        <div class="col-md-12">
+            {{ form_widget(form.email,  {'attr': {'class': 'form-control','placeholder': 'Example: yourname@up.com'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.email) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <i class="bi bi-chat-dots-fill"></i>
+        {{ form_label(form.nombre) }}
+    </div>
+    <div class="mb-3">
+        <div class="col-md-12">
+            {{ form_widget(form.nombre,  {'attr': {'class': 'form-control','placeholder': 'Your Name'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.nombre) }}
+            </div>
+        </div>
+    </div>
+
+
+        <div class="col-md-12">
+            <i class="bi bi-person-fill"></i>
+            {{ form_label(form.roles) }}
+        </div>
+        <div class="mb-3">
+            <div class="col-md-2">
+                {{ form_widget(form.roles) }}
+                <div class="form-error">
+                    {{ form_errors(form.roles) }}
+                </div>
+            </div>
+        </div>
+
+    <div class="col-md-12">
+        <i class="bi bi-calendar-date-fill"></i>
+        {{ form_label(form.password,'Password') }}
+    </div>
+    <div class="mb-3">
+        <div class="col-md-2">
+            {{ form_widget(form.password) }}
+            <div class="form-error">
+                {{ form_errors(form.password) }}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<button class="btn btn-success mt-2">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

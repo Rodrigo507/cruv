@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
@@ -34,6 +35,7 @@ class Comments
 
     /**
      * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments")
+     * @JoinColumn(onDelete="CASCADE")
      */
     private $post_id;
 

@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -38,6 +39,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user_id")
+     * @JoinColumn(onDelete="CASCADE")
      */
     private $posts;
 
