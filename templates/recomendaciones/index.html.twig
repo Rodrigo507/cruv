@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecomendacionesController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    {{ form_start(formulario) }}
+        <div class="mx-auto p-3" style="width: 450px">
+            <div class="form-control">
+                <i class="fa fa-calendar"></i> {{ form_label(formulario.titulo) }}
+                {{ form_widget(formulario.titulo, {'attr': {'class': 'form-control mt-3 mb-1'}}) }}
+
+                <small>{{ form_help(formulario.titulo) }}</small>
+
+                <div class="form-error">
+                    {{ form_errors(formulario.titulo) }}
+                </div>
+
+                <i class="fa fa-calendar"></i> {{ form_label(formulario.detail) }}
+                {{ form_widget(formulario.detail, {'attr': {'class': 'form-control'}}) }}
+
+                <small>{{ form_help(formulario.detail) }}</small>
+
+                <div class="form-error">
+                    {{ form_errors(formulario.detail) }}
+                </div>
+
+                {{ form_widget(formulario.submit , {'attr': {'class': 'btn btn-success mt-3 mb-1'}}) }}
+            </div>
+
+
+        </div>
+    {{ form_end(formulario) }}
+{% endblock %}
