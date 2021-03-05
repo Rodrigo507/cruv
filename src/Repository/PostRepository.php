@@ -19,6 +19,19 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function BuscarTodosLosPost(){
+//        return $this->getEntityManager()->getRepository('App:Post')->findAll();
+        return $this->getEntityManager()
+            ->createQuery('SELECT post.title, post.detail, post.owner, post.id  FROM App:Post post');
+    }
+
+    public function BuscarUltimosPost(){
+        return $this->getEntityManager()
+            ->createQuery('SELECT post FROM App:Post post order by post.id desc ')
+            ->setMaxResults(3)
+            ->getResult();
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */

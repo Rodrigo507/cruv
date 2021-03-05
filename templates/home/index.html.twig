@@ -3,27 +3,39 @@
 {% block title %}{{ parent() }} - Inicio{% endblock %}
 
 {% block body %}
-    {# {{ dump(post) }} #}
+{#     {{ dump(ultimos) }}#}
     <div class="container">
 
         <div class="row g-3 mt-5">
-            <div class="col-md-5 col-lg-4 order-md-last d-none d-md-block">
+            <div class="col-md-3 col-lg-5 order-md-last d-none d-md-block">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Ultimos post</span>
+                    <span class="text-muted">Posts mas recientes</span>
                 </h4>
                 {#TODO: Agregar los ultimos 5 posts                #}
                 <ul class="list-group mb-3">
-                        <h1>hola</h1>
+                    {% for ultimo in ultimos %}
+                        <div class="card w-55 mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ ultimo.title }}</h5>
+                                <p class="card-text">{{ ultimo.detail|slice(0,30)}}</p>
+                                <a href="{{ path('detail_post') }}/{{ ultimo.id }}" class="btn btn-primary mb-2">Leer</a>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated {{ ultimo.publisheddate|date("m/d/Y") }}</small>
+                                </div>
+                            </div>
+                        </div>
+{#                        <h1>{{ ultimo.title }}</h1>#}
+                    {% endfor %}
                 </ul>
             </div>
-            <div class="col-md-7 col-lg-8">
+            <div class="col-md-9 col-lg-7">
                 <h4 class="mb-3">POST DE INTERES</h4>
                 {% for item in post  %}
                     <div class="card mb-3" style="width:30rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.title }}</h5>
                             <p class="card-text">{{ item.detail|slice(0,400)}}... </p>
-                            <a href="{{ path('detail_post') }}/{{ item.id }}" class="btn btn-primary">Card link</a>
+                            <a href="{{ path('detail_post') }}/{{ item.id }}" class="btn btn-primary">Leer</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -31,6 +43,15 @@
         </div>
 
     </div>
+
+    {# display navigation #}
+    <div class="d-flex justify-content-center mt-5">
+        {# display navigation #}
+        <div class="pagination">
+            {{ knp_pagination_render(post) }}
+        </div>
+    </div>
+
     {# <div id="post"> #}
 
     {# <div class="container-fluid"> #}

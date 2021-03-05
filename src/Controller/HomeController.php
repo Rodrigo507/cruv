@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comments;
 use App\Entity\Post;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,12 +16,22 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $post = $this->getDoctrine()
-            ->getRepository(Post::class)
-            ->findAll();
-        return $this->render('home/index.html.twig', compact("post"));
+//        $post = $this->getDoctrine()
+//            ->getRepository(Post::class)
+//            ->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository(Post::class)->BuscarTodosLosPost();
+        $ultimos = $em->getRepository(Post::class)->BuscarUltimosPost();
+
+        $post = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
+
+        return $this->render('home/index.html.twig', compact("post","ultimos"));
     }
 
     /**
