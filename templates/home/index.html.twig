@@ -17,7 +17,7 @@
                         <div class="card w-55 mb-2">
                             <div class="card-body">
                                 <h5 class="card-title">{{ ultimo.title }}</h5>
-                                <p class="card-text">{{ ultimo.detail|slice(0,30)}}</p>
+                                <p class="card-text">{{ ultimo.detail|slice(0,100)}}</p>
                                 <a href="{{ path('detail_post') }}/{{ ultimo.id }}" class="btn btn-primary mb-2">Leer</a>
                                 <div class="card-footer">
                                     <small class="text-muted">Last updated {{ ultimo.publisheddate|date("m/d/Y") }}</small>
@@ -48,6 +48,7 @@
     <div class="d-flex justify-content-center mt-5">
         {# display navigation #}
         <div class="pagination">
+{#            {{ knp_pagination_sortable(post, 'Title A-Z', 'post.title', {}, {'direction': 'desc'}) }}#}
             {{ knp_pagination_render(post) }}
         </div>
     </div>

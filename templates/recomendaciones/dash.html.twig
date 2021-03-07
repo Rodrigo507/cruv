@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <h1 class="mt-2">Dashboard Recomendaciones</h1>
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th class="col col-1 " scope="col">ID</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Detalle</th>
+            <th scope="col">Fecha de creacion</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in recomendacion %}
+            <tr>
+                <th class="col col-1 ">{{ item.id }}</th>
+                <td class="col col-3 col-sm-2">{{ item.titulo }}</td>
+                <td class="col col-7 col-sm-4">{{ item.detail }}</td>
+                <td class="col col-2">{{ item.date|date('d-M-Y') }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

@@ -18,6 +18,12 @@ class RecomendacionesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Recomendaciones::class);
     }
+    public function buscarRecomendaciones()
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT recomend FROM App:Recomendaciones recomend ORDER BY recomend.date asc ")
+            ->getResult();
+    }
 
     // /**
     //  * @return Recomendaciones[] Returns an array of Recomendaciones objects

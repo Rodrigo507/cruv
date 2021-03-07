@@ -31,10 +31,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Inicio</a>
                 </li>
-                {% if  is_granted('ROLE_ADMIN')%}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('post_new') }}">Crear Posts</a>
+                    <a class="nav-link " aria-current="page" href="{{ path('recomendaciones') }}">Recomendaciones</a>
                 </li>
+                {% if  is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="{{ path('recomendaciones_dash') }}">Recomendaciones-DashBoard</a>
+                    </li>
+                {% endif %}
+                {% if  is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('post_new') }}">Crear Posts</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('post_index') }}">Admin post</a>
                     </li>
@@ -87,5 +95,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

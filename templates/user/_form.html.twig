@@ -27,7 +27,7 @@
         </div>
     </div>
 
-
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="col-md-12">
             <i class="bi bi-person-fill"></i>
             {{ form_label(form.roles) }}
@@ -40,6 +40,22 @@
                 </div>
             </div>
         </div>
+    {% else %}
+        <div style="display: none">
+            <div class="col-md-12">
+                <i class="fas fa-user-tag"></i>
+                {{ form_label(form.roles) }}
+            </div>
+            <div class="mb-3">
+                <div class="col-md-12">
+                    {{ form_widget(form.roles,  {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.roles) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
     <div class="col-md-12">
         <i class="bi bi-calendar-date-fill"></i>
@@ -47,7 +63,7 @@
     </div>
     <div class="mb-3">
         <div class="col-md-2">
-            {{ form_widget(form.password) }}
+            {{ form_widget(form.password,  {'attr': {'class': 'form-control'}}) }}
             <div class="form-error">
                 {{ form_errors(form.password) }}
             </div>

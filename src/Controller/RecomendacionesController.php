@@ -32,4 +32,15 @@ class RecomendacionesController extends AbstractController
             'formulario' => $formulario->createView(),
         ]);
     }
+
+    /**
+     * @Route("/recomendaciones-dash", name="recomendaciones_dash")
+     */
+    public function recomendacionesDashboard(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $recomendacion = $em->getRepository(Recomendaciones::class)->buscarRecomendaciones();
+
+        return $this->render('recomendaciones/dash.html.twig', compact("recomendacion"));
+    }
 }
