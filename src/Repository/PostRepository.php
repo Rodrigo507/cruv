@@ -22,12 +22,12 @@ class PostRepository extends ServiceEntityRepository
     public function BuscarTodosLosPost(){
 //        return $this->getEntityManager()->getRepository('App:Post')->findAll();
         return $this->getEntityManager()
-            ->createQuery('SELECT post.title, post.detail, post.owner, post.id  FROM App:Post post');
+            ->createQuery('SELECT post.title, post.detail, post.owner, post.id  FROM App:Post post WHERE post.estado = true');
     }
 
     public function BuscarUltimosPost(){
         return $this->getEntityManager()
-            ->createQuery('SELECT post FROM App:Post post order by post.id desc ')
+            ->createQuery('SELECT post FROM App:Post post WHERE post.estado = true order by post.id desc ')
             ->setMaxResults(3)
             ->getResult();
     }

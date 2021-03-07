@@ -35,10 +35,13 @@ class PostController extends AbstractController
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
+        $user = $this->getUser();
+        $roles = $user->getRoles();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
+
 
             //Seteamos el usuario creador del post
             $post->setUserId($user);
@@ -46,10 +49,18 @@ class PostController extends AbstractController
             $nombre = $user->getNombre();
             $post->setOwner($nombre);
 
+            //Si es admin se aprueba al crearlo
+            if (in_array('ROLE_ADMIN',$roles)){
+                $post->setEstado(true);
+            }else{//Debera ser verificado y aprobado por admin
+                $post->setEstado(false);
+            }
+
+
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('post_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('post/new.html.twig', [

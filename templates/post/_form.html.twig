@@ -26,20 +26,51 @@
             </div>
         </div>
     </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div >
+            <div class="col-md-10">
+                <i class="bi bi-calendar-date-fill"></i>
+                {{ form_label(form.estado,'Estado del post: Aprobado/No aprobado',{'attr':{'class': 'form-check-labe'}}) }}
+            </div>
+                <div class="col-md-2">
+                    {{ form_widget(form.estado,{'attr':{'class':'form-check-input'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.estado) }}
+                    </div>
+                </div>
+
+        </div>
+    {% else %}
+        <div style="display: none">
+            <div class="col-md-12">
+                <i class="bi bi-calendar-date-fill"></i>
+                {{ form_label(form.estado,'Published Date') }}
+            </div>
+            <div class="mb-3">
+                <div class="col-md-2">
+                    {{ form_widget(form.estado) }}
+                    <div class="form-error">
+                        {{ form_errors(form.estado) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 
-{#    <div class="col-md-12">#}
-{#        <i class="bi bi-person-fill"></i>#}
-{#        {{ form_label(form.owner) }}#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#        <div class="col-md-2">#}
-{#            {{ form_widget(form.owner,  {'attr': {'class': 'form-control','placeholder': 'Your Name'}}) }}#}
-{#            <div class="form-error">#}
-{#                {{ form_errors(form.owner) }}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+
+    {# <div class="col-md-12"> #}
+    {# <i class="bi bi-person-fill"></i> #}
+    {# {{ form_label(form.owner) }} #}
+    {# </div> #}
+    {# <div class="mb-3"> #}
+    {# <div class="col-md-2"> #}
+    {# {{ form_widget(form.owner,  {'attr': {'class': 'form-control','placeholder': 'Your Name'}}) }} #}
+    {# <div class="form-error"> #}
+    {# {{ form_errors(form.owner) }} #}
+    {# </div> #}
+    {# </div> #}
+    {# </div> #}
 
     <div class="col-md-12">
         <i class="bi bi-calendar-date-fill"></i>

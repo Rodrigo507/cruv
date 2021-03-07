@@ -52,6 +52,11 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $estado;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -148,6 +153,18 @@ class Post
                 $comment->setPostId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEstado(): ?bool
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(?bool $estado): self
+    {
+        $this->estado = $estado;
 
         return $this;
     }
