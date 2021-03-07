@@ -35,6 +35,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/user/new, roles: [ IS_ANONYMOUS,ROLE_ADMIN ] }
-        #- { path: ^/user/{}/edit, roles: ROLE_ADMIN }
+        - { path: ^/edit, roles: ROLE_ADMIN }
+        - { path: ^/post/new, roles: [ROLE_ADMIN,ROLE_USER_CREATOR] }
+        - { path: ^/recomendaciones, roles: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/user/new, roles: [IS_ANONYMOUS,ROLE_ADMIN] }

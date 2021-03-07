@@ -23,8 +23,8 @@ class UserType extends AbstractType
                 'expanded' => false,
                 'choices'=>[
                     'User'=>'ROLE_USER',
+                    'UserCreator'=>'ROLE_USER_CREATOR',
                     'Admin'=>'ROLE_ADMIN',
-                    'Super'=>'ROLE_SUPER_ADMIN',
                 ],
             ])
             ->add('password',PasswordType::class)

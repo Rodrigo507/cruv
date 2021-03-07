@@ -6,6 +6,11 @@
     <h1>Create new Post</h1>
 
     {{ include('post/_form.html.twig') }}
-    <a class="btn btn-primary mt-2" href="{{ path('post_index') }}">Back to list</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary mt-2" href="{{ path('post_index') }}">Back to list</a>
+    {% else %}
+        <a class="btn btn-primary mt-2" href="{{ path('home') }}">Back</a>
+    {% endif %}
+
 
 {% endblock %}

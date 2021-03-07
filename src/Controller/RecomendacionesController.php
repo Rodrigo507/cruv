@@ -34,7 +34,7 @@ class RecomendacionesController extends AbstractController
     }
 
     /**
-     * @Route("/recomendaciones-dash", name="recomendaciones_dash")
+     * @Route("/admin/recomendaciones-dash", name="recomendaciones_dash")
      */
     public function recomendacionesDashboard(Request $request): Response
     {

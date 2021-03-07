@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/post")
+ * @Route("/post")
  */
 class PostController extends AbstractController
 {
@@ -21,6 +21,7 @@ class PostController extends AbstractController
      */
     public function index(PostRepository $postRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('post/index.html.twig', [
             'posts' => $postRepository->findAll(),
         ]);
@@ -62,6 +63,7 @@ class PostController extends AbstractController
      */
     public function show(Post $post): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('post/show.html.twig', [
             'post' => $post,
         ]);
@@ -72,6 +74,7 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Post $post): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -92,6 +95,7 @@ class PostController extends AbstractController
      */
     public function delete(Request $request, Post $post): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
