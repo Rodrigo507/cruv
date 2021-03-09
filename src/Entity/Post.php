@@ -57,6 +57,11 @@ class Post
      */
     private $estado;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagen;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -165,6 +170,18 @@ class Post
     public function setEstado(?bool $estado): self
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getImagen(): ?string
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(string $imagen): self
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }

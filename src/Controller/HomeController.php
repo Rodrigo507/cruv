@@ -55,10 +55,11 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         if ($request->getMethod() == 'POST'){
             $user = $this->getUser();
+            $userName =$user->getNombre();
             $data = $request->request->all();
             $coment = new Comments();
             $coment->setCommentDate(new \DateTime("now"));
-            $coment->setUser($user->getNombre());
+            $coment->setUser($userName);
             $coment->setDetail($data['detail']);
             $coment->setPostId($this->getDoctrine()->getRepository('App:Post')->find($data['post_id']));
 
@@ -70,7 +71,7 @@ class HomeController extends AbstractController
 
             $commentdate = $coment->getCommentDate()->format('d/m/Y');
 
-            $response = new Response(json_encode(compact('detail','idcomment','commentdate')));
+            $response = new Response(json_encode(compact('detail','idcomment','commentdate','userName')));
             $response-> headers->set('Content-Type','applicaction/json');
             return $response;
 
