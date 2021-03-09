@@ -125,15 +125,15 @@ class PostController extends AbstractController
                     // ... handle exception if something happens during file upload
                 }
 
-//                $post->setImagen($newFilename);
+                $post->setImagen($newFilename);
 //                $this->setImagen($newFilename);
             }
 
             $this->getDoctrine()->getManager()->flush();
 
-//            return $this->redirectToRoute('post_index');
+            return $this->redirectToRoute('post_index');
         }
-        echo($this->getParameter('brochures_directory') . '/' . $post->getImagen());
+//        echo($this->getParameter('brochures_directory') . '/' . $post->getImagen());
 
         return $this->render('post/edit.html.twig', [
             'post' => $post,
